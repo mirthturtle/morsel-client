@@ -38,7 +38,7 @@ class Output
   end
 
   def self.save_successful
-    puts "✓\n"
+    puts "✓\n".colorize(random_colour)
   end
 
   def self.print_error(error)
