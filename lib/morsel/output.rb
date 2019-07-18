@@ -4,17 +4,21 @@ class Output
 
   def self.title
     morsel_col = random_colour
-    wolf_col   = random_colour
-    m3lon_col  = random_colour
 
-    puts "wolfOS".colorize(wolf_col) + " & " + "m3lon.com".colorize(m3lon_col) + " present:"
+    puts "wolfOS".colorize(random_colour) + " & " + "m3lon.com".colorize(random_colour) + " present:"
     puts "                               _ ".colorize(morsel_col) + "\n"
     puts " _ __ ___   ___  _ __ ___  ___| |".colorize(morsel_col) + "\n"
     puts "| '_ ` _ \\ / _ \\| '__/ __|/ _ \\ |".colorize(morsel_col) + "\n"
     puts "| | | | | | (_) | |  \\__ \\  __/ |".colorize(morsel_col) + "\n"
     puts "|_| |_| |_|\\___/|_|  |___/\\___|_|".colorize(morsel_col) + "\n"
-    puts "                 Kitchen Thoughts\n".colorize(morsel_col)
-    puts "Hash out some ideas... in the kitchen.\n\n"
+    puts "                Kitchen Companion\n".colorize(morsel_col)
+    puts "\"So you never have to eat meals alone.\"\n\n\n".colorize(random_colour)
+  end
+
+  def self.menu
+    puts "MAIN MENU\n\n"
+    puts "1  Thought collector\n"
+    puts "x  Exit to shell\n"
   end
 
   def self.clear

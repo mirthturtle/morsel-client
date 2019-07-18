@@ -1,6 +1,7 @@
 class Input
 
-  def self.break; ['quit', 'exit', 'q'] end
+  def self.break; ['quit', 'exit', 'q', 'x'] end
+  def self.thoughts; '1' end
 
   # Get single character input
   def self.get

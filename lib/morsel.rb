@@ -10,32 +10,43 @@ class Morsel
   @@PROD = true
 
   def self.activate
-    Output.clear
-    Output.title
-
     networker = Networker.new(@@PROD)
 
     if networker.up
-      Output.press_any_key
+      Output.clear
+      Output.title
+      Output.menu
       input = Input.get
 
-      # Start getting input
-      Output.clear
-      Output.type_something
+      while !Input.break.include?( input )
 
-      morsel_text = Input.read_line
-      while !Input.break.include?( morsel_text )
-        if !morsel_text.empty?
-          morsel_errors = networker.create_morsel(morsel_text)
+        if input == Input.thoughts
+          ### THOUGHT COLLECTOR
 
-          if !morsel_errors
-            Output.save_successful
-          else
-            Output.print_error(morsel_errors)
+          # Start getting input
+          Output.clear
+          Output.type_something
+
+          morsel_text = Input.read_line
+          while !Input.break.include?( morsel_text )
+            if !morsel_text.empty?
+              morsel_errors = networker.create_morsel(morsel_text)
+
+              if !morsel_errors
+                Output.save_successful
+              else
+                Output.print_error(morsel_errors)
+              end
+            end
+
+            morsel_text = Input.read_line
           end
         end
 
-        morsel_text = Input.read_line
+        Output.clear
+        Output.title
+        Output.menu
+        input = Input.get
       end
       Output.clear
       Output.exiting
