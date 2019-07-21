@@ -12,7 +12,7 @@ class Output
     puts "| | | | | | (_) | |  \\__ \\  __/ |".colorize(morsel_col) + "\n"
     puts "|_| |_| |_|\\___/|_|  |___/\\___|_|".colorize(morsel_col) + "\n"
     puts "                Kitchen Companion\n".colorize(morsel_col)
-    puts "\"So you never have to eat meals alone.\"\n\n\n".colorize(random_colour)
+    puts "\"So you'll never eat meals alone.\"\n\n\n".colorize(random_colour)
   end
 
   def self.menu
