@@ -41,6 +41,27 @@ class Morsel
 
             morsel_text = Input.read_line
           end
+
+
+        elsif input == Input.melon_selector
+          ## MELON SELECTOR
+          Output.clear
+          Output.choose_a_melon
+          Output.three_melons
+          Output.melon_menu
+
+          input = Input.get
+          if Input.melon_options.include?( input )
+            translated_melon = (input.to_i - 1)
+            melon_errors = networker.select_melon(translated_melon)
+            if !melon_errors
+              Output.melon_response(translated_melon)
+            else
+              Output.print_error(melon_errors)
+            end
+            Output.press_any_key
+            input = Input.get
+          end
         end
 
         Output.clear

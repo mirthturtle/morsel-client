@@ -18,6 +18,8 @@ class Output
   def self.menu
     puts "MAIN MENU\n\n"
     puts "1  Thought collector\n"
+    puts "2  Melon selector\n"
+    puts "\n"
     puts "x  Exit to shell\n"
   end
 
@@ -47,6 +49,49 @@ class Output
 
   def self.print_error(error)
     puts "An error occurred: #{error}\n"
+  end
+
+  ## Melon selector stuff
+
+  def self.choose_a_melon
+    puts "Choose a melon:\n\n"
+  end
+
+  def self.three_melons
+    puts " ,---. ".colorize( :light_red) + "     ,---. ".colorize( :light_yellow) + "     ,---. ".colorize( :light_green)
+    puts "/     \\".colorize(:light_red) + "    /     \\".colorize(:light_yellow) + "    /     \\".colorize(:light_green)
+    puts "|     |".colorize( :light_red) + "    |     |".colorize( :light_yellow) + "    |     |".colorize( :light_green)
+    puts "\\     /".colorize(:light_red) + "    \\     /".colorize(:light_yellow) + "    \\     /".colorize(:light_green)
+    puts " `---' ".colorize( :light_red) + "     `---' ".colorize( :light_yellow) + "     `---' ".colorize( :light_green)
+  end
+
+  def self.melon_image(melon_id)
+    colors = [:light_red, :light_yellow, :light_green]
+
+    puts "    ,---. ".colorize( colors[melon_id])
+    puts "   /     \\".colorize(colors[melon_id])
+    puts "   |     |".colorize( colors[melon_id])
+    puts "   \\     /".colorize(colors[melon_id])
+    puts "    `---' ".colorize( colors[melon_id])
+  end
+
+  def self.melon_menu
+    puts "\n"
+    puts "1  The orange melon\n"
+    puts "2  The yellow melon\n"
+    puts "3  The green melon\n\n"
+  end
+
+  def self.melon_response(melon_id)
+    colors = [:light_red, :light_yellow, :light_green]
+    color_names = ['orange', 'yellow', 'green']
+    qualifiers = ['fine', 'classic', 'quality']
+
+    self.clear
+    puts "You selected:\n\n"
+    self.melon_image(melon_id)
+    puts "\nThe #{color_names[melon_id]} melon".colorize(colors[melon_id])
+    puts "\"A #{qualifiers[melon_id]} melon.\"\n\n"
   end
 
   private
