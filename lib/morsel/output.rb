@@ -40,7 +40,7 @@ class Output
   end
 
   def self.type_something
-    puts "Ready. Type 'exit' or 'quit' to stop.\n\n".colorize(random_colour)
+    puts "Ready. Type 'x' or 'q' to stop.\n\n".colorize(random_colour)
   end
 
   def self.save_successful

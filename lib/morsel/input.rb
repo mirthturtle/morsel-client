@@ -1,6 +1,6 @@
 class Input
 
-  def self.break; ['quit', 'exit', 'q', 'x'] end
+  def self.break; ['q', 'x'] end
   def self.thoughts; '1' end
   def self.melon_selector; '2' end
   def self.melon_options; ['1','2','3'] end
