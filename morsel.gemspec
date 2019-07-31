@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
-  s.name         = 'morsel'
+  s.name         = 'morsel-client'
   s.version      = '0.0.1'
-  s.date         = '2019-07-14'
+  s.date         = '2019-07-23'
   s.summary      = "Manage your kitchen on the command line!"
   s.description  = "A command-line client for the m3lon kitchen management platform."
   s.authors      = ["Christian DeWolf"]
