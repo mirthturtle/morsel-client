@@ -77,9 +77,7 @@ class Output
 
   def self.melon_menu
     puts "\n"
-    puts "1  The orange melon\n"
-    puts "2  The yellow melon\n"
-    puts "3  The green melon\n\n"
+    puts "   1          2          3\n\n"
   end
 
   def self.melon_response(melon_id)
