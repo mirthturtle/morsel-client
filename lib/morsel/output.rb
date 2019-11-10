@@ -20,6 +20,8 @@ class Output
     puts "1  Thought collector\n"
     puts "2  Melon selector\n"
     puts "\n"
+    puts "n  Activate \"Nicole Mode\"".colorize(:blue)
+    puts "\n"
     puts "x  Exit to shell\n"
   end
 
@@ -39,16 +41,18 @@ class Output
     puts "\nPRESS ANY KEY\n".colorize( random_colour )
   end
 
+  def self.print_error(error)
+    puts "An error occurred: #{error}\n"
+  end
+
+  ## Thought collector stuff
+
   def self.type_something
     puts "Ready. Type 'x' or 'q' to stop.\n\n".colorize(random_colour)
   end
 
   def self.save_successful
     puts "✓\n".colorize(random_colour)
-  end
-
-  def self.print_error(error)
-    puts "An error occurred: #{error}\n"
   end
 
   ## Melon selector stuff
@@ -90,6 +94,59 @@ class Output
     self.melon_image(melon_id)
     puts "\nThe #{color_names[melon_id]} melon".colorize(colors[melon_id])
     puts "\"A #{qualifiers[melon_id]} melon.\"\n\n"
+  end
+
+  ## Nicole mode
+
+  def self.nicole_title
+    morsel_col = random_colour
+    puts "wolfOS".colorize(random_colour) + " & " + "m3lon.com".colorize(random_colour) + " present:"
+    puts "          _           _      ".colorize(:light_blue) + "\n"
+    puts "    _ __ (_) ___ ___ | | ___ ".colorize(:light_blue) + "\n"
+    puts "   | '_ \\| |/ __/ _ \\| |/ _ \\".colorize(:light_blue) + "\n"
+    puts "   | | | | | (_| (_) | |  __/".colorize(:light_blue) + "\n"
+    puts "   |_| |_|_|\\___\\___/|_|\\___|".colorize(:light_blue) + "\n"
+    puts "            You Are Wonderful\n".colorize(:blue)
+    puts "\"Nicole is my favourite person.\" -Christian\n\n\n".colorize(:green)
+  end
+
+  def self.nicole_menu
+    puts "MAIN MENU\n\n"
+    puts "1  Get current Nicole status\n"
+    puts "2  Browse Nicole data\n"
+    puts "\n"
+    puts "n  Exit \"Nicole Mode\"".colorize(:blue)
+    puts "\n"
+    puts "x  Exit to shell\n"
+  end
+
+  def self.get_nicole_status
+    puts "IDENTIFYING CURRENT NICOLE STATUS...."
+    puts "\n"
+    puts "Nicole is currently:"
+    puts "- beautiful"
+    puts "- powerful"
+    puts "- using a Morsel Kitchen Companion terminal in \"Nicole Mode\""
+    puts "\n"
+  end
+
+  def self.print_nicole_data
+    puts "QUERYING DATASET \"NICOLE.SQL\".....".colorize(:blue)
+    puts "\n"
+    puts "Attribute          |  Data        |"
+    puts "----------------------------------|"
+    puts "Writing EXP        |  493         | "
+    puts "Lawyer Power Level |  5 - EXTREME | "
+    puts "Creative vision    |  INSPIRING   | "
+    puts "Knee functionality |  78%         | "
+    puts "Nail sharpness     |  90%         | "
+    puts "Expert cuddler?    |  TRUE        | "
+    puts "Sexiness           |  ########################"
+    puts "\n"
+    puts "WARNING! Nicole sexiness data is too large and too raw to display properly.".colorize(:light_red)
+    puts "\n"
+    puts "Please upgrade your Morsel Kitchen Companion terminal to the latest version.".colorize(:light_green)
+    puts "\n"
   end
 
   private

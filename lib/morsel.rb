@@ -7,20 +7,18 @@ require_relative 'morsel/networker'
 
 class Morsel
 
-  @@PROD = true
+  @@PROD = false
+  @@NICOLE_MODE = false
 
   def self.activate
     networker = Networker.new(@@PROD)
 
     if networker.up
-      Output.clear
-      Output.title
-      Output.menu
-      input = Input.get
+      input = menu_and_prompt
 
       while !Input.break.include?( input )
 
-        if input == Input.thoughts
+        if input == Input.thoughts && !@@NICOLE_MODE
           ### THOUGHT COLLECTOR
 
           # Start getting input
@@ -43,7 +41,7 @@ class Morsel
           end
 
 
-        elsif input == Input.melon_selector
+        elsif input == Input.melon_selector && !@@NICOLE_MODE
           ## MELON SELECTOR
           Output.clear
           Output.choose_a_melon
@@ -62,12 +60,29 @@ class Morsel
             Output.press_any_key
             input = Input.get
           end
+
+        elsif input == Input.nicole_mode
+          ## TOGGLE NICOLE MODE
+          @@NICOLE_MODE = !@@NICOLE_MODE
+
+        elsif @@NICOLE_MODE && input == Input.nicole_status
+          ## Nicole status viewer
+          Output.clear
+          Output.get_nicole_status
+
+          Output.press_any_key
+          input = Input.get
+
+        elsif @@NICOLE_MODE && input == Input.nicole_data
+          ## Nicole data browser
+          Output.clear
+          Output.print_nicole_data
+
+          Output.press_any_key
+          input = Input.get
         end
 
-        Output.clear
-        Output.title
-        Output.menu
-        input = Input.get
+        input = menu_and_prompt
       end
       Output.clear
       Output.exiting
@@ -76,5 +91,23 @@ class Morsel
     end
 
   end
+
+  private
+
+    def self.menu_and_prompt
+      Output.clear
+      @@NICOLE_MODE ? print_nicole_menu : print_normal_menu
+      Input.get
+    end
+
+    def self.print_normal_menu
+      Output.title
+      Output.menu
+    end
+
+    def self.print_nicole_menu
+      Output.nicole_title
+      Output.nicole_menu
+    end
 
 end
