@@ -20,7 +20,7 @@ class Output
     puts "1  Thought collector\n"
     puts "2  Melon selector\n"
     puts "\n"
-    puts "n  Activate \"Nicole Mode\"".colorize(:yellow)
+    puts "n  Activate \"Nicole Mode\"".colorize(:light_yellow)
     puts "\n"
     puts "x  Exit to shell\n"
   end
