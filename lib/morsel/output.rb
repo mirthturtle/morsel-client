@@ -130,7 +130,7 @@ class Output
   end
 
   def self.print_nicole_data
-    puts "QUERYING DATASET \"NICOLE.SQL\".....".colorize(:blue)
+    puts "QUERYING FILE \"NICOLE.DAT\".....".colorize(:blue)
     puts "\n"
     puts "Attribute          |  Data        |"
     puts "----------------------------------|"
