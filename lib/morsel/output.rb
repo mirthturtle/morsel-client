@@ -20,7 +20,7 @@ class Output
     puts "1  Thought collector\n"
     puts "2  Melon selector\n"
     puts "\n"
-    puts "n  Activate \"Nicole Mode\"".colorize(:blue)
+    puts "n  Activate \"Nicole Mode\"".colorize(:yellow)
     puts "\n"
     puts "x  Exit to shell\n"
   end
@@ -99,15 +99,14 @@ class Output
   ## Nicole mode
 
   def self.nicole_title
-    morsel_col = random_colour
-    puts "wolfOS".colorize(random_colour) + " & " + "m3lon.com".colorize(random_colour) + " present:"
+    puts "wolfOS".colorize(:cyan) + " & " + "m3lon.com".colorize(:cyan) + " present:"
     puts "          _           _      ".colorize(:light_blue) + "\n"
     puts "    _ __ (_) ___ ___ | | ___ ".colorize(:light_blue) + "\n"
     puts "   | '_ \\| |/ __/ _ \\| |/ _ \\".colorize(:light_blue) + "\n"
     puts "   | | | | | (_| (_) | |  __/".colorize(:light_blue) + "\n"
     puts "   |_| |_|_|\\___\\___/|_|\\___|".colorize(:light_blue) + "\n"
     puts "            You Are Wonderful\n".colorize(:blue)
-    puts "\"Nicole is my favourite person.\" -Christian\n\n\n".colorize(:green)
+    puts "\"Nicole is my favourite person.\" -Christian\n\n\n".colorize(:cyan)
   end
 
   def self.nicole_menu
