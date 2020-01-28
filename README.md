@@ -4,6 +4,7 @@ Designed for use on a dedicated Raspberry Pi terminal on your kitchen counter. C
 
 Features:
 - Quickly record your thoughts and writings while you're in the kitchen
+- Access the m3lon.com Melon Selector
 
 ![Morsel - Main Menu](https://github.com/christiancodes/morsel-client/blob/master/morsel-menu.jpg "Morsel - Main Menu")
 
