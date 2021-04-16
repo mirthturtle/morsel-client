@@ -25,7 +25,7 @@ class Animal
   ## INPUT
 
   def self.order_letters(orders)
-    "abcdefghij"[0...orders.size]
+    "abcdefghijk"[0...orders.size]
   end
 
   def self.asset_letters(assets)
@@ -79,10 +79,32 @@ class Animal
     letters = self.asset_letters(store['inventory'])
 
     if store['inventory'].size > 0
-      store["inventory"].each_with_index do |item, i|
-        puts "#{letters[i]}   #{item}"
+      # print in columns if lots in inventory
+      if store['inventory'].size > 20
+        first_col = []
+        second_col = []
+        store["inventory"].each_with_index do |item, i|
+          if i > (store['inventory'].size / 2.0)
+            second_col << "#{letters[i]}   #{item}"
+          else
+            first_col << "#{letters[i]}   #{item}"
+          end
+        end
+
+        first_col.each_with_index do |item, i|
+          if second_col.size - 1 >= i
+            puts item.ljust(40) + second_col[i]
+          else
+            puts item
+          end
+        end
+      else # normal
+        store["inventory"].each_with_index do |item, i|
+          puts "#{letters[i]}   #{item}"
+        end
       end
       Output.choose_an_asset
+
     else
       Output.nothing_to_trade
     end

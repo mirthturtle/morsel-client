@@ -207,7 +207,7 @@ class Output
   end
 
   def self.nothing_to_trade
-    puts "Nothing to trade!\n".colorize(:light_red)
+    puts "Nothing to trade!\n".colorize(:light_magenta)
     puts "Press ENTER to return to menu"
   end
 
