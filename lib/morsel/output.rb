@@ -171,7 +171,7 @@ class Output
     end
 
     puts "Place an order: \n".colorize(:light_cyan)
-    Animal.print_stores_menu(animal_friends)
+    Animal.print_list_of_stores(animal_friends)
     if animal_orders.size > 0
       puts "\nOR View an order: \n".colorize(:light_cyan)
       Animal.print_order_menu(animal_orders)
@@ -193,6 +193,22 @@ class Output
 
   def self.select_destination
     puts "Select a destination: \n".colorize(:light_cyan)
+  end
+
+  def self.order_prompt
+    puts "f   Fulfill order".colorize(:magenta)
+    puts "c   Cancel order".colorize(:light_red)
+    puts ""
+    puts "ENTER  Return to menu\n\n"
+  end
+
+  def self.choose_an_asset
+    puts "\nChoose an asset to order:\n".colorize(:light_cyan)
+  end
+
+  def self.nothing_to_trade
+    puts "Nothing to trade!\n".colorize(:light_red)
+    puts "Press ENTER to return to menu"
   end
 
   private

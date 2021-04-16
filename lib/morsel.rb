@@ -96,7 +96,7 @@ class Morsel
                 Output.commerce_title
                 puts store['name']
                 puts "Operated by: #{store['operator']}\n\n"
-                Animal.print_store( store )
+                Animal.print_store_inventory( store )
               end
 
             elsif !current_order['asset']
@@ -109,8 +109,8 @@ class Morsel
                   Output.clear
                   Output.commerce_title
                   puts "> " + current_order['asset'] + "\n\n"
-                  puts "Select a destination: \n"
-                  Animal.print_stores_menu(animal_friends)
+                  Output.select_destination
+                  Animal.print_list_of_stores(animal_friends, current_order['store']) # omit the current store
                   puts ""
                 else
                   # return to menu
@@ -130,15 +130,26 @@ class Morsel
             elsif !current_order['destination']
               # creating order, on destination selection screen
               if dest = Animal.get_store_selection(animal_friends, input)
-                current_order['destination'] = dest
-                animal_orders << current_order
-                Animal.save_orders(animal_orders)
+                if dest == current_order['store']
+                  # invalid selection! reprint selection
+                  Output.clear
+                  Output.commerce_title
+                  puts "> " + current_order['asset'] + "\n\n"
+                  Output.select_destination
+                  Animal.print_list_of_stores(animal_friends, current_order['store'])
+                  puts ""
 
-                Output.clear
-                Output.commerce_title
-                Output.order_placed
+                else
+                  current_order['destination'] = dest
+                  animal_orders << current_order
+                  Animal.save_orders(animal_orders)
 
-                Animal.view_order(current_order, animal_friends)
+                  Output.clear
+                  Output.commerce_title
+                  Output.order_placed
+
+                  Animal.view_order(current_order, animal_friends)
+                end
               else
                 current_order = nil
 

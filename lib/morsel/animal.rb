@@ -57,9 +57,13 @@ class Animal
 
   ## PRINTING
 
-  def self.print_stores_menu(animal_friends)
+  def self.print_list_of_stores(animal_friends, omit = nil)
     animal_friends.each_with_index do |store, i|
-      puts "#{i + 1}   #{store['name']}"
+      if omit && omit == i
+        puts "    #{store['name']}"
+      else
+        puts "#{i + 1}   #{store['name']}"
+      end
     end
   end
 
@@ -71,17 +75,16 @@ class Animal
     end
   end
 
-  def self.print_store(store)
+  def self.print_store_inventory(store)
     letters = self.asset_letters(store['inventory'])
 
     if store['inventory'].size > 0
       store["inventory"].each_with_index do |item, i|
         puts "#{letters[i]}   #{item}"
       end
-      puts "\nChoose an asset to order:\n\n"
-
+      Output.choose_an_asset
     else
-      puts "No inventory!\n\nPress ENTER to return to menu"
+      Output.nothing_to_trade
     end
   end
 
@@ -91,12 +94,10 @@ class Animal
     puts "-----------------------"
     puts "#{order['asset']}"
     puts "FROM: #{from['name']}"
-    puts "TO: #{to['operator']} at #{to['name']}"
+    puts "REQUESTED BY: #{to['operator']} at #{to['name']}"
     puts "-----------------------\n\n"
 
-    puts "f   Fulfill order"
-    puts "c   Cancel order\n"
-    puts "ENTER  Return to menu\n\n"
+    Output.order_prompt
   end
 
   ## MOVING INVENTORY
