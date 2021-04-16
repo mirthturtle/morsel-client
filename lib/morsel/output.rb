@@ -19,6 +19,7 @@ class Output
     puts "MAIN MENU\n\n"
     puts "1  Thought collector\n"
     puts "2  Melon selector\n"
+    puts "3  AnimalFriends Commerce\n"
     puts "\n"
     puts "n  Activate \"Nicole Mode\"".colorize(:light_yellow)
     puts "\n"
@@ -146,6 +147,52 @@ class Output
     puts "\n"
     puts "Please upgrade your Morsel Kitchen Companion terminal to the latest version.".colorize(:light_green)
     puts "\n"
+  end
+
+  ##### ANIMAL COMMERCE ######
+
+   def self.commerce_title
+    puts "wolfOS".colorize(:cyan) + " & " + "Jade Cat".colorize(:light_green) + " present:"
+    puts "              _                 _  __      _                _      ".colorize(:light_yellow) + "\n"
+    puts "   __ _ _ __ (_)_ __ ___   __ _| |/ _|_ __(_) ___ _ __   __| |___  ".colorize(:light_yellow) + "\n"
+    puts "  / _` | '_ \\| | '_ ` _ \\ / _` | | |_| '__| |/ _ \\ '_ \\ / _` / __| ".colorize(:light_yellow) + "\n"
+    puts " | (_| | | | | | | | | | | (_| | |  _| |  | |  __/ | | | (_| \\__ \\ ".colorize(:light_yellow) + "\n"
+    puts "  \\__,_|_| |_|_|_| |_| |_|\\__,_|_|_| |_|  |_|\\___|_| |_|\\__,_|___/ ".colorize(:light_yellow) + "\n"
+    puts "                         Adorable Commerce\n".colorize(:yellow)
+  end
+
+  def self.commerce_main_menu(animal_friends, animal_orders, message = nil)
+    self.commerce_title
+
+    if message == :fulfilled
+      self.order_fulfilled
+    elsif message == :cancelled
+      self.order_cancelled
+    end
+
+    puts "Place an order: \n".colorize(:light_cyan)
+    Animal.print_stores_menu(animal_friends)
+    if animal_orders.size > 0
+      puts "\nOR View an order: \n".colorize(:light_cyan)
+      Animal.print_order_menu(animal_orders)
+    end
+    puts ""
+  end
+
+  def self.order_placed
+    puts "Order placed.\n".colorize(:green)
+  end
+
+  def self.order_cancelled
+    puts "Order cancelled.\n".colorize(:light_red)
+  end
+
+  def self.order_fulfilled
+    puts "Order fulfilled!\n".colorize(:magenta)
+  end
+
+  def self.select_destination
+    puts "Select a destination: \n".colorize(:light_cyan)
   end
 
   private

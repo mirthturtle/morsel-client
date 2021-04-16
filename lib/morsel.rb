@@ -4,6 +4,9 @@
 require_relative 'morsel/input'
 require_relative 'morsel/output'
 require_relative 'morsel/networker'
+require_relative 'morsel/animal'
+
+require 'json'
 
 class Morsel
 
@@ -14,6 +17,10 @@ class Morsel
     networker = Networker.new(@@PROD)
 
     if networker.up
+      animal_friends = Animal.get_inventory
+      animal_orders = Animal.get_orders
+      current_order = nil
+
       input = menu_and_prompt
 
       while !Input.break.include?( input )
@@ -60,6 +67,118 @@ class Morsel
             Output.press_any_key
             input = Input.get
           end
+
+        elsif input == Input.animal_commerce && !@@NICOLE_MODE
+
+          ##### ANIMAL COMMERCE #####
+
+          Output.clear
+          Output.commerce_main_menu(animal_friends, animal_orders)
+
+          input = Input.get
+          while !Input.break.include?( input )
+            # parse input based on where we are
+
+            if !current_order
+              # on main menu, selecting a store or viewing order
+              if Animal.order_letters(animal_orders).include?(input)
+                # select and view the order
+                current_order = Animal.get_order_selection(animal_orders, input)
+                Output.clear
+                Output.commerce_title
+                Animal.view_order(current_order, animal_friends)
+              elsif Animal.store_numbers(animal_friends).include?(input)
+                # set up order, select store and print its inventory
+                current_order = {}
+                current_order['store'] = Animal.get_store_selection(animal_friends, input)
+                store = animal_friends[ current_order['store'] ]
+                Output.clear
+                Output.commerce_title
+                puts store['name']
+                puts "Operated by: #{store['operator']}\n\n"
+                Animal.print_store( store )
+              end
+
+            elsif !current_order['asset']
+              # creating order, on asset selection screen for store
+              if animal_friends[current_order['store']]['inventory'].size > 0
+                if selection = Animal.get_asset_selection(animal_friends[current_order['store']]['inventory'], input)
+                  current_order['asset'] = selection
+
+                  # print destination selection screen
+                  Output.clear
+                  Output.commerce_title
+                  puts "> " + current_order['asset'] + "\n\n"
+                  puts "Select a destination: \n"
+                  Animal.print_stores_menu(animal_friends)
+                  puts ""
+                else
+                  # return to menu
+                  current_order = nil
+
+                  # print main menu
+                  Output.clear
+                  Output.commerce_main_menu(animal_friends, animal_orders)
+                end
+              else
+                # return to menu
+                current_order = nil
+
+                Output.clear
+                Output.commerce_main_menu(animal_friends, animal_orders)
+              end
+            elsif !current_order['destination']
+              # creating order, on destination selection screen
+              if dest = Animal.get_store_selection(animal_friends, input)
+                current_order['destination'] = dest
+                animal_orders << current_order
+                Animal.save_orders(animal_orders)
+
+                Output.clear
+                Output.commerce_title
+                Output.order_placed
+
+                Animal.view_order(current_order, animal_friends)
+              else
+                current_order = nil
+
+                Output.clear
+                Output.commerce_main_menu(animal_friends, animal_orders)
+              end
+            else
+              # viewing current order - can fulfill or cancel
+              message = nil
+              if input == 'f'
+                # fulfill order
+                Animal.transfer_asset(current_order['asset'], animal_friends[current_order['store']], animal_friends[current_order['destination']])
+                Animal.save_inventory(animal_friends)
+
+                # remove order from order book
+                animal_orders -= [current_order]
+                Animal.save_orders(animal_orders)
+
+                message = :fulfilled
+              elsif input == 'c'
+                # cancel order
+                animal_orders -= [current_order]
+                Animal.save_orders(animal_orders)
+
+                message = :cancelled
+              end
+
+              current_order = nil
+
+              # print main menu
+              Output.clear
+              Output.commerce_main_menu(animal_friends, animal_orders, message)
+            end
+
+            input = Input.get
+          end
+
+          # reset order on quit
+          current_order = nil
+
 
         elsif input == Input.nicole_mode
           ## TOGGLE NICOLE MODE

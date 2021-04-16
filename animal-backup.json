@@ -1,0 +1,85 @@
+[
+  {
+    "name": "Copper & Jade",
+    "operator": "Jade Cat",
+    "inventory": [
+      "Copper orb",
+      "Copper bar (1 lb)",
+      "Copper bar (1 oz)",
+      "Silver coin (1 oz)"
+    ]
+  },
+  {
+    "name": "The Bird's Nest",
+    "operator": "Blue Bird",
+    "inventory": [
+      "Lapis lazuli egg (large)",
+      "Lapis lazuli egg (small)",
+      "Sodalite egg",
+      "Malachite egg (large)",
+      "Malachite egg (small)",
+      "Turquoise egg",
+      "Hematite egg",
+      "Obsidian egg (x.large)",
+      "Obsidian egg (small)",
+      "Selenite egg",
+      "Snowflake obsidian eggs (2)",
+      "Pyrite egg",
+      "Tiger's eye egg",
+      "Landscape jasper egg",
+      "Fluorite and ruby egg",
+      "Shungite egg",
+      "Pyrite and hematite egg",
+      "Shamanite egg",
+      "Apatite egg",
+      "Charoite egg",
+      "Amythest egg",
+      "Rose quartz egg",
+      "Rose quartz egg (with rainbow)"
+    ]
+  },
+  {
+    "name": "Darkstone Capital",
+    "operator": "Woof",
+    "inventory": [
+      "Obsidian orb",
+      "Obsidian oval",
+      "Hematite ingot (small)",
+      "Hematite ingot (large)",
+      "Hematite square",
+      "Hematite beads"
+    ]
+  },
+  {
+    "name": "The Goose's Quarry",
+    "operator": "The Goose",
+    "inventory": [
+      "Selenite pebble",
+      "Lapis lazuli pebble",
+      "Quartz wand",
+      "Rose quartz pebble",
+      "Pyrite cube",
+      "Hematite pebble"
+    ]
+  },
+  {
+    "name": "Prickles",
+    "operator": "The Hedgehogs",
+    "inventory": [
+    ]
+  },
+  {
+    "name": "The Rowboat",
+    "operator": "Lucille & Small Seal",
+    "inventory": [
+      "Agate orb",
+      "Rainbow hematite orb"
+    ]
+  },
+  {
+    "name": "The Vault",
+    "operator": "Maud Lewis Cat",
+    "inventory": [
+    ]
+  }
+]
