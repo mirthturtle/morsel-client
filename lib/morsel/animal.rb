@@ -25,7 +25,7 @@ class Animal
   ## INPUT
 
   def self.order_letters(orders)
-    "abcdefghijk"[0...orders.size]
+    "abcdefghij"[0...orders.size]
   end
 
   def self.asset_letters(assets)
@@ -127,6 +127,27 @@ class Animal
   def self.transfer_asset(asset, source, destination)
     source['inventory'] -= [asset]
     destination['inventory'] << asset
+  end
+
+  ## RANDOMIZERS
+
+  # gets the index of the store
+  def self.get_random_store_with_inventory(animal_friends)
+    the_store = animal_friends.sample
+    while the_store['inventory'].size == 0
+      the_store = animal_friends.sample
+    end
+    animal_friends.index( the_store )
+  end
+
+  # gets the asset
+  def self.get_random_asset_from_store(store)
+    store['inventory'].sample
+  end
+
+  # gets the index of a destination
+  def self.get_random_destination_omitting(animal_friends, omitting)
+    ((0...animal_friends.size).collect{|x| x} - [omitting]).sample
   end
 
 end

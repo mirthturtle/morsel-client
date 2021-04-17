@@ -168,10 +168,14 @@ class Output
       self.order_fulfilled
     elsif message == :cancelled
       self.order_cancelled
+    elsif message == :mystery
+      self.order_received
     end
 
     puts "Place an order: \n".colorize(:light_cyan)
     Animal.print_list_of_stores(animal_friends)
+    puts "\n0   Mystery order"
+
     if animal_orders.size > 0
       puts "\nOR View an order: \n".colorize(:light_cyan)
       Animal.print_order_menu(animal_orders)
@@ -189,6 +193,10 @@ class Output
 
   def self.order_fulfilled
     puts "Order fulfilled!\n".colorize(:magenta)
+  end
+
+  def self.order_received
+    puts "Order received.\n".colorize(:green)
   end
 
   def self.select_destination
