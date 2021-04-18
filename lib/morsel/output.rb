@@ -174,7 +174,11 @@ class Output
 
     puts "Place an order: \n".colorize(:light_cyan)
     Animal.print_list_of_stores(animal_friends)
-    puts "\n0   Mystery order"
+    if animal_orders.size < 10
+      puts "\n0   Mystery order"
+    else
+      puts "\n    Mystery order"
+    end
 
     if animal_orders.size > 0
       puts "\nOR View an order: \n".colorize(:light_cyan)

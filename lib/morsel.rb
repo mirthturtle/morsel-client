@@ -99,13 +99,15 @@ class Morsel
                 Animal.print_store_inventory( store )
               elsif input == "0"
                 # mystery order
-                current_order = {}
-                current_order['store'] = Animal.get_random_store_with_inventory( animal_friends )
-                current_order['asset'] = Animal.get_random_asset_from_store( animal_friends[ current_order['store'] ] )
-                current_order['destination'] = Animal.get_random_destination_omitting( animal_friends, current_order['store'] )
-                animal_orders << current_order
-                Animal.save_orders(animal_orders)
-                current_order = nil
+                if animal_orders.size < 10
+                  current_order = {}
+                  current_order['store'] = Animal.get_random_store_with_inventory( animal_friends )
+                  current_order['asset'] = Animal.get_random_asset_from_store( animal_friends[ current_order['store'] ] )
+                  current_order['destination'] = Animal.get_random_destination_omitting( animal_friends, current_order['store'] )
+                  animal_orders << current_order
+                  Animal.save_orders(animal_orders)
+                  current_order = nil
+                end
 
                 Output.clear
                 Output.commerce_main_menu(animal_friends, animal_orders)
