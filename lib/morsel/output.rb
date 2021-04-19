@@ -208,10 +208,15 @@ class Output
   end
 
   def self.order_prompt
+    puts "\n"
     puts "f   Fulfill order".colorize(:magenta)
     puts "c   Cancel order".colorize(:light_red)
     puts ""
     puts "ENTER  Return to menu\n\n"
+  end
+
+  def self.someone_else_ordering
+    puts "\nSomeone else is also ordering this:".colorize(:yellow)
   end
 
   def self.choose_an_asset

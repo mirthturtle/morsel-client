@@ -86,7 +86,7 @@ class Morsel
                 current_order = Animal.get_order_selection(animal_orders, input)
                 Output.clear
                 Output.commerce_title
-                Animal.view_order(current_order, animal_friends)
+                Animal.view_order(current_order, animal_friends, animal_orders)
               elsif Animal.store_numbers(animal_friends).include?(input)
                 # set up order, select store and print its inventory
                 current_order = {}
@@ -154,6 +154,7 @@ class Morsel
                   puts ""
 
                 else
+                  # finish creating the order
                   current_order['destination'] = dest
                   animal_orders << current_order
                   Animal.save_orders(animal_orders)
@@ -162,7 +163,7 @@ class Morsel
                   Output.commerce_title
                   Output.order_placed
 
-                  Animal.view_order(current_order, animal_friends)
+                  Animal.view_order(current_order, animal_friends, animal_orders)
                 end
               else
                 current_order = nil
@@ -178,8 +179,8 @@ class Morsel
                 Animal.transfer_asset(current_order['asset'], animal_friends[current_order['store']], animal_friends[current_order['destination']])
                 Animal.save_inventory(animal_friends)
 
-                # remove order from order book
-                animal_orders -= [current_order]
+                # remove order from order book along with conflicting orders
+                Animal.cancel_orders_of(current_order['asset'], animal_orders)
                 Animal.save_orders(animal_orders)
 
                 message = :fulfilled

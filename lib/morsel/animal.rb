@@ -110,16 +110,31 @@ class Animal
     end
   end
 
-  def self.view_order(order, animal_friends)
+  def self.view_order(order, animal_friends, animal_orders)
     from = animal_friends[ order['store'] ]
     to   = animal_friends[ order['destination'] ]
     puts "-----------------------"
     puts "#{order['asset']}"
     puts "FROM: #{from['name']}"
     puts "REQUESTED BY: #{to['operator']} at #{to['name']}"
-    puts "-----------------------\n\n"
+    puts "-----------------------"
+
+    # check conflicting orders
+    conflicting_orders = self.get_conflicting_orders(order, animal_orders)
+
+    if conflicting_orders.size > 0
+      Output.someone_else_ordering
+      conflicting_orders.each do |conflicting_order|
+        competitor = animal_friends[ conflicting_order['destination'] ]
+        puts competitor['operator'] + " at " + competitor['name'] + "\n"
+      end
+    end
 
     Output.order_prompt
+  end
+
+  def self.get_conflicting_orders(order, animal_orders)
+    (animal_orders - [order]).select{|x| x['asset'] == order['asset']}
   end
 
   ## MOVING INVENTORY
@@ -127,6 +142,10 @@ class Animal
   def self.transfer_asset(asset, source, destination)
     source['inventory'] -= [asset]
     destination['inventory'] << asset
+  end
+
+  def self.cancel_orders_of(asset, orders)
+    orders.select!{ |x| x['asset'] != asset }
   end
 
   ## RANDOMIZERS
