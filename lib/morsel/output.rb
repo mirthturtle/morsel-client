@@ -153,11 +153,11 @@ class Output
 
    def self.commerce_title
     puts "wolfOS".colorize(:cyan) + " & " + "Jade Cat".colorize(:light_green) + " present:"
-    puts "              _                 _  __      _                _      ".colorize(:light_yellow) + "\n"
-    puts "   __ _ _ __ (_)_ __ ___   __ _| |/ _|_ __(_) ___ _ __   __| |___  ".colorize(:light_yellow) + "\n"
-    puts "  / _` | '_ \\| | '_ ` _ \\ / _` | | |_| '__| |/ _ \\ '_ \\ / _` / __| ".colorize(:light_yellow) + "\n"
-    puts " | (_| | | | | | | | | | | (_| | |  _| |  | |  __/ | | | (_| \\__ \\ ".colorize(:light_yellow) + "\n"
-    puts "  \\__,_|_| |_|_|_| |_| |_|\\__,_|_|_| |_|  |_|\\___|_| |_|\\__,_|___/ ".colorize(:light_yellow) + "\n"
+    puts "              _                 _ ".colorize(:yellow) + " __      _                _      ".colorize(:light_yellow) + "\n"
+    puts "   __ _ _ __ (_)_ __ ___   __ _| |".colorize(:yellow) + "/ _|_ __(_) ___ _ __   __| |___  ".colorize(:light_yellow) + "\n"
+    puts "  / _` | '_ \\| | '_ ` _ \\ / _` |".colorize(:yellow) + " | |_| '__| |/ _ \\ '_ \\ / _` / __| ".colorize(:light_yellow) + "\n"
+    puts " | (_| | | | | | | | | | | (_| | ".colorize(:yellow) + "|  _| |  | |  __/ | | | (_| \\__ \\ ".colorize(:light_yellow) + "\n"
+    puts "  \\__,_|_| |_|_|_| |_| |_|\\__,_|_".colorize(:yellow) + "|_| |_|  |_|\\___|_| |_|\\__,_|___/ ".colorize(:light_yellow) + "\n"
     puts "                         Adorable Commerce\n".colorize(:yellow)
   end
 
@@ -181,10 +181,10 @@ class Output
     end
 
     if animal_orders.size > 0
-      puts "\nOR View an order: \n".colorize(:light_cyan)
+      puts "\n\nOR View an order: \n".colorize(:light_cyan)
       Animal.print_order_menu(animal_orders)
     end
-    puts ""
+    puts "\n"
   end
 
   def self.order_placed

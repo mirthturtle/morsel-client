@@ -9,9 +9,9 @@ require_relative 'morsel/animal'
 require 'json'
 
 class Morsel
-
-  @@PROD = false
-  @@NICOLE_MODE = false
+  @@PROD = false   ## dev mode: connects to localhost:3000 christianrails server
+                   ## prod mode: connects to live christiandewolf.com
+  @@NICOLE_MODE = false # tracks state of being in nicole mode
 
   def self.activate
     networker = Networker.new(@@PROD)
@@ -19,6 +19,7 @@ class Morsel
     if networker.up
       animal_friends = Animal.get_inventory
       animal_orders = Animal.get_orders
+      order_history = Animal.get_order_history
       current_order = nil
 
       input = menu_and_prompt
@@ -179,6 +180,10 @@ class Morsel
                 Animal.transfer_asset(current_order['asset'], animal_friends[current_order['store']], animal_friends[current_order['destination']])
                 Animal.save_inventory(animal_friends)
 
+                # save in history
+                order_history.prepend( {order: current_order, status: 1} )
+                Animal.save_order_history( order_history )
+
                 # remove order from order book along with conflicting orders
                 Animal.cancel_orders_of(current_order['asset'], animal_orders)
                 Animal.save_orders(animal_orders)
@@ -188,6 +193,9 @@ class Morsel
                 # cancel order
                 animal_orders -= [current_order]
                 Animal.save_orders(animal_orders)
+
+                order_history.prepend( {order: current_order, status: 0} )
+                Animal.save_order_history( order_history )
 
                 message = :cancelled
               end

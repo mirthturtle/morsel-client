@@ -12,6 +12,11 @@ class Animal
     JSON.parse(file)
   end
 
+  def self.get_order_history
+    file = File.read('./order-history.json')
+    JSON.parse(file)
+  end
+
   ## SAVING
 
   def self.save_inventory(animal_friends)
@@ -20,6 +25,10 @@ class Animal
 
   def self.save_orders(orders)
     File.write('./orders.json', JSON.dump(orders))
+  end
+
+  def self.save_order_history(history)
+    File.write('./order-history.json', JSON.dump(history))
   end
 
   ## INPUT
