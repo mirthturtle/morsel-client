@@ -181,7 +181,7 @@ class Morsel
                 Animal.save_inventory(animal_friends)
 
                 # save in history
-                order_history.prepend( {order: current_order, status: 1} )
+                order_history.unshift( {order: current_order, status: 1} )
                 Animal.save_order_history( order_history )
 
                 # remove order from order book along with conflicting orders
@@ -194,7 +194,7 @@ class Morsel
                 animal_orders -= [current_order]
                 Animal.save_orders(animal_orders)
 
-                order_history.prepend( {order: current_order, status: 0} )
+                order_history.unshift( {order: current_order, status: 0} )
                 Animal.save_order_history( order_history )
 
                 message = :cancelled
