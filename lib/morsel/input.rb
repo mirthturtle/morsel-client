@@ -3,6 +3,8 @@ class Input
   def self.break; ['q', 'x'] end
   def self.thoughts; '1' end
   def self.melon_selector; '2' end
+  def self.animal_commerce; '3' end
+
   def self.melon_options; ['1','2','3'] end
 
   # Get single character input
