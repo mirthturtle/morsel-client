@@ -11,7 +11,6 @@ require 'json'
 class Morsel
   @@PROD = false   ## dev mode: connects to localhost:3000 christianrails server
                    ## prod mode: connects to live christiandewolf.com
-  @@NICOLE_MODE = false # tracks state of being in nicole mode
 
   def self.activate
     networker = Networker.new(@@PROD)
@@ -26,7 +25,7 @@ class Morsel
 
       while !Input.break.include?( input )
 
-        if input == Input.thoughts && !@@NICOLE_MODE
+        if input == Input.thoughts
           ### THOUGHT COLLECTOR
 
           # Start getting input
@@ -49,7 +48,7 @@ class Morsel
           end
 
 
-        elsif input == Input.melon_selector && !@@NICOLE_MODE
+        elsif input == Input.melon_selector
           ## MELON SELECTOR
           Output.clear
           Output.choose_a_melon
@@ -69,7 +68,7 @@ class Morsel
             input = Input.get
           end
 
-        elsif input == Input.animal_commerce && !@@NICOLE_MODE
+        elsif input == Input.animal_commerce
 
           ##### ANIMAL COMMERCE #####
 
@@ -212,27 +211,6 @@ class Morsel
 
           # reset order on quit
           current_order = nil
-
-
-        elsif input == Input.nicole_mode
-          ## TOGGLE NICOLE MODE
-          @@NICOLE_MODE = !@@NICOLE_MODE
-
-        elsif @@NICOLE_MODE && input == Input.nicole_status
-          ## Nicole status viewer
-          Output.clear
-          Output.get_nicole_status
-
-          Output.press_any_key
-          input = Input.get
-
-        elsif @@NICOLE_MODE && input == Input.nicole_data
-          ## Nicole data browser
-          Output.clear
-          Output.print_nicole_data
-
-          Output.press_any_key
-          input = Input.get
         end
 
         input = menu_and_prompt
@@ -249,18 +227,13 @@ class Morsel
 
     def self.menu_and_prompt
       Output.clear
-      @@NICOLE_MODE ? print_nicole_menu : print_normal_menu
+      print_normal_menu
       Input.get
     end
 
     def self.print_normal_menu
       Output.title
       Output.menu
-    end
-
-    def self.print_nicole_menu
-      Output.nicole_title
-      Output.nicole_menu
     end
 
 end

@@ -20,8 +20,12 @@ class Networker
 
   # checks if the service is up
   def up
-    response = HTTParty.get( @up_url )
-    response.code == 200
+    begin
+      response = HTTParty.get( @up_url )
+      response.code == 200
+    rescue
+      return false
+    end
   end
 
   def create_morsel(content)
