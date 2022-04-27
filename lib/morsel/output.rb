@@ -19,7 +19,6 @@ class Output
     puts "MAIN MENU\n\n"
     puts "1  Thought collector\n"
     puts "2  Melon selector\n"
-    puts "3  AnimalFriends game\n"
     puts "\n"
     puts "x  Exit to shell\n"
   end
@@ -93,85 +92,6 @@ class Output
     self.melon_image(melon_id)
     puts "\nThe #{color_names[melon_id]} melon".colorize(colors[melon_id])
     puts "\"A #{qualifiers[melon_id]} melon.\"\n\n"
-  end
-
-  ##### ANIMAL COMMERCE ######
-
-   def self.commerce_title
-    puts "wolfOS".colorize(:cyan) + " & " + "Jade Cat".colorize(:light_green) + " present:"
-    puts "              _                 _ ".colorize(:yellow) + " __      _                _      ".colorize(:light_yellow) + "\n"
-    puts "   __ _ _ __ (_)_ __ ___   __ _| |".colorize(:yellow) + "/ _|_ __(_) ___ _ __   __| |___  ".colorize(:light_yellow) + "\n"
-    puts "  / _` | '_ \\| | '_ ` _ \\ / _` |".colorize(:yellow) + " | |_| '__| |/ _ \\ '_ \\ / _` / __| ".colorize(:light_yellow) + "\n"
-    puts " | (_| | | | | | | | | | | (_| | ".colorize(:yellow) + "|  _| |  | |  __/ | | | (_| \\__ \\ ".colorize(:light_yellow) + "\n"
-    puts "  \\__,_|_| |_|_|_| |_| |_|\\__,_|_".colorize(:yellow) + "|_| |_|  |_|\\___|_| |_|\\__,_|___/ ".colorize(:light_yellow) + "\n"
-    puts "                         Adorable Commerce\n".colorize(:yellow)
-  end
-
-  def self.commerce_main_menu(animal_friends, animal_orders, message = nil)
-    self.commerce_title
-
-    if message == :fulfilled
-      self.order_fulfilled
-    elsif message == :cancelled
-      self.order_cancelled
-    elsif message == :mystery
-      self.order_received
-    end
-
-    puts "Place an order: \n".colorize(:light_cyan)
-    Animal.print_list_of_stores(animal_friends)
-    if animal_orders.size < 10
-      puts "\n0   Mystery order"
-    else
-      puts "\n    Mystery order"
-    end
-
-    if animal_orders.size > 0
-      puts "\n\nOR View an order: \n".colorize(:light_cyan)
-      Animal.print_order_menu(animal_orders)
-    end
-    puts "\n"
-  end
-
-  def self.order_placed
-    puts "Order placed.\n".colorize(:green)
-  end
-
-  def self.order_cancelled
-    puts "Order cancelled.\n".colorize(:light_red)
-  end
-
-  def self.order_fulfilled
-    puts "Order fulfilled!\n".colorize(:magenta)
-  end
-
-  def self.order_received
-    puts "Order received.\n".colorize(:green)
-  end
-
-  def self.select_destination
-    puts "Select a destination: \n".colorize(:light_cyan)
-  end
-
-  def self.order_prompt
-    puts "\n"
-    puts "f   Fulfill order".colorize(:magenta)
-    puts "c   Cancel order".colorize(:light_red)
-    puts ""
-    puts "ENTER  Return to menu\n\n"
-  end
-
-  def self.someone_else_ordering
-    puts "\nSomeone else is also ordering this:".colorize(:yellow)
-  end
-
-  def self.choose_an_asset
-    puts "\nChoose an asset to order:\n".colorize(:light_cyan)
-  end
-
-  def self.nothing_to_trade
-    puts "Nothing to trade!\n".colorize(:light_magenta)
-    puts "Press ENTER to return to menu"
   end
 
   private
