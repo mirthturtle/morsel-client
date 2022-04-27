@@ -8,10 +8,14 @@ Features:
 
 ![Morsel - Main Menu](https://github.com/christiancodes/morsel-client/blob/master/morsel-menu.jpg "Morsel - Main Menu")
 
-### To run:
+### To run on a Raspberry Pi:
 
-`gem install colorize httparty`
+Clone the repo into your home directory: `git clone https://github.com/christiancodes/morsel-client.git`
+
+Install dependencies: `gem install colorize httparty`
 
 Add to ~/.bashrc: `alias morsel='cd /home/pi/morsel-client && ruby -Ilib bin/morsel'`
+
+Reload bashrc: `. ~/.bashrc` and run the program with `morsel`.
 
 To connect to your m3lon pantry, check your pantry's Settings page for your Morsel Code and make it an environment variable on your terminal: `export MORSEL_CODE=your-unique-code`
