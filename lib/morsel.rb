@@ -8,8 +8,8 @@ require_relative 'morsel/networker'
 require 'json'
 
 class Morsel
-  @@PROD = false   ## dev mode: connects to localhost:3000 christianrails server
-                   ## prod mode: connects to live christiandewolf.com
+  @@PROD = true   ## prod mode: connects to live christiandewolf.com
+                  ## dev mode:  connects to localhost:3000 christianrails server
 
   def self.activate
     networker = Networker.new(@@PROD)
@@ -61,7 +61,6 @@ class Morsel
             Output.press_any_key
             input = Input.get
           end
-
         end
 
         input = menu_and_prompt
