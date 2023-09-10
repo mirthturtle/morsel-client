@@ -6,11 +6,11 @@ Features:
 - Quickly record your thoughts and writings while you're in the kitchen
 - Access the m3lon.com Melon Selector
 
-![Morsel - Main Menu](https://github.com/christiancodes/morsel-client/blob/master/morsel-menu.jpg "Morsel - Main Menu")
+![Morsel - Main Menu](https://github.com/mirthturtle/morsel-client/blob/master/morsel-menu.jpg "Morsel - Main Menu")
 
 ### To run on a Raspberry Pi:
 
-Clone the repo into your home directory: `git clone https://github.com/christiancodes/morsel-client.git`
+Clone the repo into your home directory: `git clone https://github.com/mirthturtle/morsel-client.git`
 
 Install dependencies: `gem install colorize httparty`
 
